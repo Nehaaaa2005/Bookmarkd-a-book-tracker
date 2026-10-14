@@ -1,0 +1,127 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 30px 16px;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #222;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 28px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+h1 {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    margin-top: 0;
+    margin-bottom: 24px;
+    color: #666;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid #8bb8f0;
+    border-color: #3979c3;
+}
+
+.error {
+    display: block;
+    margin-top: 5px;
+    color: #c62828;
+    font-size: 13px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #2868b2;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1e518c;
+}
+
+.book-section {
+    margin-top: 32px;
+}
+
+.book-section h2 {
+    margin-bottom: 16px;
+}
+
+#empty-message {
+    color: #666;
+    font-size: 14px;
+}
+
+#book-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.book-card {
+    margin-bottom: 12px;
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow-wrap: anywhere;
+}
+
+.book-card h3 {
+    margin: 0 0 6px;
+}
+
+.book-card p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.book-status {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    background-color: #e8f0fb;
+    color: #244f86;
+    font-size: 13px;
+}
