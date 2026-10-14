@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**Project Name:** Book Tracker
+Project Name: Book Tracker
 
 **Description:** A simple web application for managing a personal reading list. Users can add books, track their reading status, search their library, and remove books.
 
@@ -96,3 +96,40 @@ Requirements:
 - Allow books with the same title but different authors, or the same author but different titles.
 - Keep all existing functionality working.
 - Make the smallest necessary changes and explain what changed.
+
+PROMPT 7
+My Book Tracker now supports adding books, validation, newest-first ordering, localStorage, search, status changes, and duplicate-book prevention.
+Add a Delete button to each book entry. When clicked, it should remove that book from the list and localStorage. Keep all existing features working, make the smallest necessary changes, and explain what changed.
+
+PROMPT 8
+Add a small summary above my Book Tracker list showing the number of books with each status: To read, Reading, and Finished. Update the counts immediately when a book is added, deleted, or its status changes. Keep localStorage, search, duplicate prevention, and all existing features working. Make the smallest necessary changes and explain how to test them.
+
+AI Mistake Encountered and Correction
+
+Mistake: During the development of my Book Tracker application, the AI incorrectly assumed that my JavaScript file was named `scripts.js` instead of `script.js`. This led to confusion while discussing the project files and GitHub updates.
+
+How I Identified It: I checked my project folder and clarified that the correct filename was `script.js`. I verified the script reference in my HTML file to ensure it matched the actual filename.
+
+How It Was Corrected: The guidance was corrected to consistently use `script.js`. I continued working with the correct file and ensured that the project files remained consistent.
+
+What I Learned: AI-generated suggestions should not be followed blindly. I learned to verify file names, check the existing code, and test changes before accepting AI recommendations. This experience helped me understand the importance of human oversight when using AI for software development.
+
+## AI-Assisted Attempt to Prevent Duplicate Book Entries
+
+Objective: Prevent users from adding the same book more than once to the Book Tracker application.
+
+Prompt Used: I asked the AI to modify my existing JavaScript code so that, when a book with the same title and author was entered again, the application would display the message “This book is already in your library.” The existing book's status should remain unchanged, and all other features should continue working.
+
+AI Implementation: The AI suggested using JavaScript's `Array.some()` method to check whether a book with the same title and author already existed. It used `trim()` to ignore leading and trailing spaces and `toLowerCase()` to ignore differences in capitalization.
+
+Mistake / Challenge Encountered: Although the duplicate-prevention feature was implemented, an existing duplicate entry for *They Came to Baghdad* by Agatha Christie remained in the library. The new validation prevented duplicate additions, but it did not automatically remove duplicates that were already stored in `localStorage`.
+
+Correction: I manually deleted the extra *They Came to Baghdad* entry and verified the duplicate-prevention feature separately.
+
+Outcome: The application could prevent new duplicate entries while preserving the existing functionality, including searching, changing book statuses, deleting books, and saving data in `localStorage`.
+
+What I Learned: Preventing new duplicates and cleaning up existing duplicate records are two different problems. I learned to define duplicate criteria clearly, test edge cases such as differences in capitalization and spaces, and distinguish between validation logic and data cleanup. I also learned to verify AI-generated code through actual testing rather than relying only on the suggested implementation.
+
+Things Not Implemented or Fully Verified
+
+Mobile Responsiveness: The application has not been fully tested on mobile devices. Although the existing CSS includes some mobile-friendly properties, it is uncertain whether the layout works correctly across different screen sizes. Testing and further adjustments may be required to ensure a smooth mobile experience.
