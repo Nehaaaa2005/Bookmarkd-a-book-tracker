@@ -7,6 +7,8 @@ const statusInput = document.getElementById("status");
 const titleError = document.getElementById("title-error");
 const authorError = document.getElementById("author-error");
 
+const duplicateError = document.getElementById("duplicate-error");
+
 const bookList = document.getElementById("book-list");
 const emptyMessage = document.getElementById("empty-message");
 
@@ -120,6 +122,7 @@ bookForm.addEventListener("submit", function (event) {
     // Clear previous error messages
     titleError.textContent = "";
     authorError.textContent = "";
+    duplicateError.textContent = "";
 
     const title = titleInput.value.trim();
     const author = authorInput.value.trim();
@@ -143,6 +146,20 @@ bookForm.addEventListener("submit", function (event) {
     if (!isValid) {
         return;
     }
+
+    
+    const isDuplicate = books.some(function (book) {
+        return (
+            book.title.trim().toLowerCase() === title.toLowerCase() &&
+            book.author.trim().toLowerCase() === author.toLowerCase()
+        );
+    });
+
+    if (isDuplicate) {
+        duplicateError.textContent =
+            "This book is already in your library.";
+        return;
+}
 
     // NEW: Add the book to the beginning of the array
     const newBook = {
