@@ -70,8 +70,22 @@ function displayBooks() {
            saveBooks();
            displayBooks();
         });
+        
+        
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.className = "delete-button";
 
-        bookCard.append(bookTitle, bookAuthor, bookStatus);
+        deleteButton.addEventListener("click", function () {
+            books = books.filter(function (existingBook) {
+                return existingBook !== book;
+        });
+
+            saveBooks();
+            displayBooks();
+        });
+
+        bookCard.append(bookTitle, bookAuthor, bookStatus, deleteButton);
 
         bookList.append(bookCard);
     });
@@ -113,6 +127,30 @@ if (savedBooks !== null) {
         console.error("Could not load saved books:", error);
     }
 }
+
+
+// Remove duplicates already saved in the library
+
+const uniqueBooks = new Map();
+
+books.forEach(function (book) {
+    const title = book.title.trim().toLowerCase();
+    const author = book.author.trim().toLowerCase();
+    const key = JSON.stringify([title, author]);
+
+    if (!uniqueBooks.has(key)) {
+        uniqueBooks.set(key, book);
+    }
+});
+
+const cleanedBooks = Array.from(uniqueBooks.values());
+
+if (cleanedBooks.length !== books.length) {
+    books = cleanedBooks;
+    saveBooks();
+}
+
+
 
 displayBooks();
 
@@ -159,7 +197,7 @@ bookForm.addEventListener("submit", function (event) {
         duplicateError.textContent =
             "This book is already in your library.";
         return;
-}
+    }
 
     // NEW: Add the book to the beginning of the array
     const newBook = {
