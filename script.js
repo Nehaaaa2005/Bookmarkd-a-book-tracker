@@ -10,6 +10,8 @@ const authorError = document.getElementById("author-error");
 const bookList = document.getElementById("book-list");
 const emptyMessage = document.getElementById("empty-message");
 
+const searchInput = document.getElementById("search-input");
+
 // NEW: Store all books in an array
 let books = [];
 
@@ -18,11 +20,23 @@ function saveBooks() {
     localStorage.setItem("books", JSON.stringify(books));
 }
 
-// NEW: Display all books in the array
+
 function displayBooks() {
     bookList.innerHTML = "";
 
-    books.forEach(function (book) {
+    // Get the search text and ignore letter case
+    const searchText = searchInput.value.trim().toLowerCase();
+
+    // Filter books by title or author
+    const filteredBooks = books.filter(function (book) {
+        return (
+            book.title.toLowerCase().includes(searchText) ||
+            book.author.toLowerCase().includes(searchText)
+        );
+    });
+
+    // Display only matching books
+    filteredBooks.forEach(function (book) {
         const bookCard = document.createElement("li");
         bookCard.className = "book-card";
 
@@ -32,17 +46,48 @@ function displayBooks() {
         const bookAuthor = document.createElement("p");
         bookAuthor.textContent = "Author: " + book.author;
 
-        const bookStatus = document.createElement("span");
+        
+        const bookStatus = document.createElement("select");
         bookStatus.className = "book-status";
-        bookStatus.textContent = book.status;
+
+        ["To read", "Reading", "Finished"].forEach(function (status) {
+    const option = document.createElement("option");
+    option.value = status;
+    option.textContent = status;
+
+    if (status === book.status) {
+        option.selected = true;
+    }
+
+    bookStatus.append(option);
+        });
+
+        // Update and save the book when its status changes
+        bookStatus.addEventListener("change", function () {
+           book.status = bookStatus.value;
+           saveBooks();
+           displayBooks();
+        });
 
         bookCard.append(bookTitle, bookAuthor, bookStatus);
+
         bookList.append(bookCard);
     });
 
-    // Show the empty message only when there are no books
-    emptyMessage.hidden = books.length > 0;
+    // Show an appropriate message
+    if (books.length === 0) {
+        emptyMessage.textContent =
+            "No books added yet. Add your first book above!";
+        emptyMessage.hidden = false;
+    } else if (filteredBooks.length === 0) {
+        emptyMessage.textContent = "No matching books found.";
+        emptyMessage.hidden = false;
+    } else {
+        emptyMessage.hidden = true;
+    }
 }
+
+searchInput.addEventListener("input", displayBooks);
 
 // NEW: Load previously saved books when the page opens
 const savedBooks = localStorage.getItem("books");
