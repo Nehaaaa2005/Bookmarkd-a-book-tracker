@@ -114,7 +114,7 @@ How It Was Corrected: The guidance was corrected to consistently use `script.js`
 
 What I Learned: AI-generated suggestions should not be followed blindly. I learned to verify file names, check the existing code, and test changes before accepting AI recommendations. This experience helped me understand the importance of human oversight when using AI for software development.
 
-## AI-Assisted Attempt to Prevent Duplicate Book Entries
+AI-Assisted Attempt to Prevent Duplicate Book Entries
 
 Objective: Prevent users from adding the same book more than once to the Book Tracker application.
 
