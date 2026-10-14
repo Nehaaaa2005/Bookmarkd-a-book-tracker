@@ -14,6 +14,10 @@ const emptyMessage = document.getElementById("empty-message");
 
 const searchInput = document.getElementById("search-input");
 
+const toReadCount = document.getElementById("to-read-count");
+const readingCount = document.getElementById("reading-count");
+const finishedCount = document.getElementById("finished-count");
+
 // NEW: Store all books in an array
 let books = [];
 
@@ -23,7 +27,26 @@ function saveBooks() {
 }
 
 
+function updateStatusCounts() {
+    const toRead = books.filter(function (book) {
+        return book.status === "To read";
+    }).length;
+
+    const reading = books.filter(function (book) {
+        return book.status === "Reading";
+    }).length;
+
+    const finished = books.filter(function (book) {
+        return book.status === "Finished";
+    }).length;
+
+    toReadCount.textContent = toRead;
+    readingCount.textContent = reading;
+    finishedCount.textContent = finished;
+}
+
 function displayBooks() {
+    updateStatusCounts();
     bookList.innerHTML = "";
 
     // Get the search text and ignore letter case

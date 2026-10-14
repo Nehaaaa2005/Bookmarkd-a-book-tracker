@@ -36,7 +36,7 @@
             </div>
             
             <p id="duplicate-error" class="error"></p>
-            
+
             <button type="submit">Add Book</button>
         </form>
 
@@ -49,6 +49,13 @@
                placeholder="Search by title or author..."
                aria-label="Search books by title or author"
             >
+            
+            
+            <div id="status-summary">
+                <span>To read: <strong id="to-read-count">0</strong></span>
+                <span>Reading: <strong id="reading-count">0</strong></span>
+                <span>Finished: <strong id="finished-count">0</strong></span>
+            </div>
 
             <p id="empty-message">No books added yet. Add your first book above!</p>
             <ul id="book-list"></ul>
